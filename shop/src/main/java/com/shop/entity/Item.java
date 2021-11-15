@@ -28,7 +28,7 @@ public class Item {
     private int price;
 
     @Column(nullable = false)
-    private int sockNumber;
+    private int stockNumber;
 
     @Lob
     @Column(nullable = false)

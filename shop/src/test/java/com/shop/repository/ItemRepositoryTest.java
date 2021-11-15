@@ -41,7 +41,7 @@ class ItemRepositoryTest {
         item.setPrice(10000);
         item.setItemDetail("테스트 상품 상세 설명");
         item.setItemSellStatus(ItemSellStatus.SELL);
-        item.setSockNumber(100);
+        item.setStockNumber(100);
         item.setRegTime(LocalDateTime.now());
         item.setUpdateTime(LocalDateTime.now());
         Item savedItem=itemRepository.save(item);
@@ -55,7 +55,7 @@ class ItemRepositoryTest {
             item.setPrice(10000+i);
             item.setItemDetail("테스트 상품 상세설명"+i);
             item.setItemSellStatus(ItemSellStatus.SELL);
-            item.setSockNumber(100);
+            item.setStockNumber(100);
             item.setRegTime(LocalDateTime.now());
             item.setUpdateTime(LocalDateTime.now());
             Item savedItem=itemRepository.save(item);
@@ -108,7 +108,7 @@ class ItemRepositoryTest {
             item.setPrice(1000);
             item.setItemDetail("테스트 상품 상세 설명"+i);
             item.setItemSellStatus(ItemSellStatus.SELL);
-            item.setSockNumber(100);
+            item.setStockNumber(100);
             item.setRegTime(LocalDateTime.now());
             item.setUpdateTime(LocalDateTime.now());
             itemRepository.save(item);
@@ -119,7 +119,7 @@ class ItemRepositoryTest {
             item.setPrice(1000+i);
             item.setItemDetail("테스트 상품 상세 설명"+i);
             item.setItemSellStatus(ItemSellStatus.SELL);
-            item.setSockNumber(0);
+            item.setStockNumber(0);
             item.setRegTime(LocalDateTime.now());
             item.setUpdateTime(LocalDateTime.now());
             itemRepository.save(item);
@@ -147,8 +147,8 @@ class ItemRepositoryTest {
         Pageable pageable = PageRequest.of(0, 5);
         Page<Item> itemPagingResult=itemRepository.findAll(booleanBuilder,pageable);
         System.out.println("total element:"+itemPagingResult.getTotalElements());
-        List<Item> resultIitemList=itemPagingResult.getContent();
-        for(Item resultItem:resultIitemList){
+        List<Item> resultItemList=itemPagingResult.getContent();
+        for(Item resultItem:resultItemList){
             System.out.println(resultItem.toString());
         }
 
