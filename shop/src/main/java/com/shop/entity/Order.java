@@ -29,9 +29,34 @@ public class Order extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 
+    private LocalDateTime orderDate;
+
 
 
     @OneToMany(mappedBy = "order", cascade = ALL,orphanRemoval = true,fetch=FetchType.LAZY)
     private List<OrderItem> orderItems=new ArrayList<>();
 
+    public void addOrderItem(OrderItem orderItem){
+        orderItems.add(orderItem);
+        orderItem.setOrder(this);
+    }
+
+    public static Order createOrder(Member member, List<OrderItem> orderItemList){
+        Order order=new Order();
+        order.setMember(member);
+        for(OrderItem orderItem : orderItemList){
+            order.addOrderItem(orderItem);
+        }
+        order.setOrderStatus(OrderStatus.ORDER);
+        order.setOrderDate(LocalDateTime.now());
+        return order;
+    }
+
+    public int getTotalPrice(){
+        int totalPrice=0;
+        for(OrderItem orderitem:orderItems){
+            totalPrice+= orderitem.getTotalPrice();
+        }
+        return totalPrice;
+    }
 }
