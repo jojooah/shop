@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="cart")
 @Getter@Setter
-public class Cart {
+public class Cart{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

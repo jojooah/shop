@@ -15,7 +15,7 @@ import static javax.persistence.CascadeType.ALL;
 @Entity
 @Getter@Setter
 @Table(name="orders")
-public class Order {
+public class Order extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,9 +29,7 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 
-    private LocalDateTime regTime;
 
-    private LocalDateTime updateTime;
 
     @OneToMany(mappedBy = "order", cascade = ALL,orphanRemoval = true,fetch=FetchType.LAZY)
     private List<OrderItem> orderItems=new ArrayList<>();

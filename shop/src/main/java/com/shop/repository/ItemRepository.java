@@ -9,7 +9,8 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface ItemRepository extends JpaRepository<Item,Long>, QuerydslPredicateExecutor<Item> {
+public interface ItemRepository extends JpaRepository<Item,Long>, QuerydslPredicateExecutor<Item>
+,ItemRepositoryCustom{
     List<Item> findByItemNm(String itemNm);
     @Query("select i from Item i where i.itemDetail like %:itemDetail% order by i.price")
     List<Item> findByItemDetail(@Param("itemDetail") String itemDetail);
